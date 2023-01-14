@@ -1,5 +1,5 @@
 <project default="compile">
-	<property file="build.properties"/>
+	<property file="ant.properties"/>
 
   <path id="cp">
   	<fileset dir="lib">
@@ -34,11 +34,18 @@
 			fork="true"
 			classname="App" 
 			classpath="target/classes"
-			classpathref="cp">
-		</java>
+			classpathref="cp"/>
 	</target>
 
-	<target name="jar">
+	<target name="test">
+		<java
+			fork="true"
+			classname="TestRunner"
+			classpath="target/classes"
+			classpathref="cp"/>
+	</target>
+
+	<target name="build">
 		<jar 
 			destfile="target/app.jar"  
 			basedir="target/classes"/> 
