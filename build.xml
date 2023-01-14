@@ -1,0 +1,47 @@
+<project default="compile">
+	<property file="build.properties"/>
+
+  <path id="cp">
+  	<fileset dir="lib">
+  		<include name="**/*.jar"/>
+  	</fileset>
+  	<dirset dir="lib"/>
+  	<dirset dir="resources"/>
+  </path>
+
+	<target name="prop">
+		<echo message="${ant.version}"/>
+		<echo message="${app.name}"/>
+		<echo message="${site.name}"/>
+	</target>
+
+	<target name="clean">
+		<delete dir="target"/>
+	</target>
+
+	<target name="compile">
+		<mkdir dir="target/classes"/>
+		<javac 
+			includeantruntime="false" 
+			classpathref="cp"
+			srcdir="src" 
+			destdir="target/classes">
+		</javac>
+	</target>
+
+	<target name="run">
+		<java 
+			fork="true"
+			classname="App" 
+			classpath="target/classes"
+			classpathref="cp">
+		</java>
+	</target>
+
+	<target name="jar">
+		<jar 
+			destfile="target/app.jar"  
+			basedir="target/classes"/> 
+	</target>
+
+</project>
